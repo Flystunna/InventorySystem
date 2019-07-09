@@ -1,0 +1,49 @@
+﻿@model MyCrud.Models.Inventory
+
+@{
+    Layout = null;
+}
+
+@using (Html.BeginForm("Add", "Inventory", FormMethod.Post, new {onsubmit = "return SubmitForm(this)"}))
+{
+    @Html.HiddenFor(model => model.InventoryID)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control",  placeholder="Enter Customer Name", type="text", required = "" } )  
+        @Html.ValidationMessageFor(model =>model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Ordername, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Ordername,  new { @class = "form-control", placeholder="Enter Order", type="text", required = "" } ) 
+        @Html.ValidationMessageFor(model =>model.Ordername)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Quantity, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Quantity, new { @class = "form-control", placeholder="Quantity", type="number", required = "" } ) 
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Date, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Date,  "{0::yyyy/MM/dd}", new { @class = "form-control", type="date",  required = "" } ) 
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, new { @class = "control-label" })
+        <div class="input-group">
+            <span class="input-group-text">#</span>
+        @Html.TextBoxFor(model => model.Price, new { @class = "form-control", type="number", required = "" } ) 
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-warning" />
+    </div>
+    
+}
+@section scripts{
+    <script>
+        function ToJavaScript(value) {
+            var pattern = /Date\(([^]+)\)/;
+            var results = pattern.exec(value);
+            var dt = new Date(parseFloat(results[1]));
+            return (dt.getMonth() + 1) + "/" + dt.getDate() + "/" + dt.getFullYear();
+        }
+    </script>}

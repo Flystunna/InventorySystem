@@ -1,0 +1,39 @@
+﻿@model MyCrud.Models.Employee
+
+@{
+    Layout = null;
+}
+@using (Html.BeginForm("AddorEdit", "Employee", FormMethod.Post, new {onsubmit = "return SubmitForm(this)"}))
+{
+    @Html.HiddenFor(model => model.EmployeeID)
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Name, new { @class = "form-control", required = "" } )  
+        @Html.ValidationMessageFor(model =>model.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Position, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Position, new { @class = "form-control", type="text", required = "" } ) 
+        @Html.ValidationMessageFor(model =>model.Position)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Office, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Office, new { @class = "form-control", type="text", required = "" } ) 
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Age, new { @class = "control-label" })
+        @Html.TextBoxFor(model => model.Age, new { @class = "form-control", type="number",  required = "" } ) 
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Salary, new { @class = "control-label" })
+        <div class="input-group">
+            <span class="input-group-text">#</span>
+        @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", type="number", required = "" } ) 
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-warning" />
+    </div>
+    
+}
